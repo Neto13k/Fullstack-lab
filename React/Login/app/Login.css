@@ -1,0 +1,28 @@
+div {
+  text-align: center;
+  margin-top: 50px;
+  font-family: Arial, sans-serif;
+}
+
+form {
+  display: inline-block;
+  text-align: left;
+}
+
+input {
+  display: block;
+  margin-bottom: 10px;
+  padding: 8px;
+  width: 250px;
+}
+
+button {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+p.error {
+  color: red;
+  font-size: 14px;
+  margin: 0 0 10px 0;
+}

@@ -1,0 +1,26 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  font-family: Arial, sans-serif;
+}
+
+#input1 {
+  width: 250px;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+}
+
+#input1:focus {
+  border-color: #007bff;
+}
+
+p {
+  margin-top: 10px;
+  color: #333;
+  font-size: 14px;
+}

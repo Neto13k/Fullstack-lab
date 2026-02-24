@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIRBNB</title>
+</head>
+<body>
+
+    <H1>Informe a cidade que deseja</H1>
+
+    <label for="Digite a Cidade"></label>
+    <input type="text" id="Cidade" name="Cidade" placeholder="Cidade">
+    <button onclick="Busca()">Busca</button>
+    <br>
+
+    <h3>Histórico</h3>
+    <table id="TabelaHistorico">
+    <thead>
+        <tr>
+            <th>Hora</th>
+            <th>Cidade</th>
+        </tr>
+    </thead>
+    <tbody id="Atualizarhistorico"></tbody>
+    </table>
+
+</body>
+<script src="busca.js"></script>
+</html>

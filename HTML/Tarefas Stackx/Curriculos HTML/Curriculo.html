@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Currículo - José Hermes</title>
+
+<style>
+:root{
+    --bg:#f3f4f6;
+    --card:#ffffff;
+    --text:#111827;
+    --muted:#6b7280;
+    --accent:#2563eb;
+    --border:#e5e7eb;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font:500 15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    padding:24px;
+    display:flex;
+    justify-content:center;
+}
+
+.curriculo{
+    width:min(100%,900px);
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:260px 1fr;
+}
+
+.sidebar{
+    background:#111827;
+    color:#fff;
+    padding:24px;
+}
+
+.sidebar h1{
+    font-size:22px;
+    margin-bottom:4px;
+}
+
+.sidebar h2{
+    font-size:14px;
+    font-weight:500;
+    color:#93c5fd;
+    margin-bottom:16px;
+}
+
+.sidebar section{
+    margin-bottom:20px;
+}
+
+.sidebar strong{
+    display:block;
+    font-size:13px;
+    letter-spacing:.5px;
+    margin-bottom:6px;
+    color:#9ca3af;
+    text-transform:uppercase;
+}
+
+.sidebar p,
+.sidebar li{
+    font-size:14px;
+    color:#e5e7eb;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.main{
+    padding:28px;
+}
+
+.block{
+    margin-bottom:24px;
+}
+
+.block strong{
+    display:block;
+    font-size:14px;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    margin-bottom:8px;
+}
+
+.item{
+    margin-bottom:12px;
+}
+
+.item-title{
+    font-weight:600;
+}
+
+.item-sub{
+    font-size:13px;
+    color:var(--muted);
+}
+
+p{
+    color:#374151;
+}
+
+a{
+    color:var(--accent);
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+@media (max-width:700px){
+    .curriculo{
+        grid-template-columns:1fr;
+    }
+
+    .sidebar{
+        border-bottom:1px solid var(--border);
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div class="curriculo">
+
+    <aside class="sidebar">
+        <h1>José Hermes</h1>
+        <h2>Desenvolvedor Full Stack</h2>
+
+        <section>
+            <strong>Contato</strong>
+            <p>Maceió - AL</p>
+            <p>(82) 9 8878-1903</p>
+            <p>josenetto13k@hotmail.com</p>
+            <p>
+                <a href="https://www.linkedin.com/in/jose-hermes-230200317/" target="_blank">
+                    LinkedIn
+                </a>
+            </p>
+        </section>
+
+        <section>
+            <strong>Habilidades</strong>
+            <ul>
+                <li>Trabalho em equipe</li>
+                <li>Proatividade</li>
+                <li>Boa comunicação</li>
+            </ul>
+        </section>
+    </aside>
+
+    <main class="main">
+
+        <section class="block">
+            <strong>Objetivo</strong>
+            <p>
+                Estudante de desenvolvimento Full Stack buscando a primeira oportunidade na área de tecnologia, com foco em adquirir experiência prática e evoluir profissionalmente como desenvolvedor.
+            </p>
+        </section>
+
+        <section class="block">
+            <strong>Formação</strong>
+
+            <div class="item">
+                <div class="item-title">
+                    StackX - Formação Full Stack
+                </div>
+                <div class="item-sub">
+                    2025 - Atualmente
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-title">
+                    Escola Estadual Moreira e Silva
+                </div>
+                <div class="item-sub">
+                    Ensino Médio Completo - 2015 a 2017
+                </div>
+            </div>
+
+        </section>
+
+        <section class="block">
+            <strong>Experiência</strong>
+
+            <div class="item">
+                <div class="item-title">
+                    Almaviva Experience - Representante de Atendimento
+                </div>
+                <div class="item-sub">
+                    2019 - Atualmente
+                </div>
+
+                <p>
+                    Atendimento ao cliente via telefone e chat, suporte e resolução de demandas, além de colaboração em equipe para alcance de metas e qualidade no atendimento.
+                </p>
+            </div>
+
+        </section>
+
+        <section class="block">
+            <strong>Sobre mim</strong>
+            <p>
+                Estudante dedicado e apaixonado por tecnologia, com forte interesse em desenvolvimento de software. Possuo facilidade de aprendizado, boa comunicação e motivação para crescer na área.
+            </p>
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

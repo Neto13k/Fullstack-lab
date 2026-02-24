@@ -1,0 +1,128 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variáveis de cores modernas */
+:root {
+    --cor-primaria: #2563eb;
+    --cor-secundaria: #1e293b;
+    --cor-texto: #334155;
+    --cor-fundo: #f1f5f9;
+    --cor-branco: #ffffff;
+    --cor-borda: #e2e8f0;
+}
+
+/* Corpo */
+body {
+    font-family: "Libre Baskerville", serif;
+    background: linear-gradient(135deg, #e0e7ff, #f8fafc);
+    color: var(--cor-texto);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* Container principal */
+.curriculo {
+    background: var(--cor-branco);
+    max-width: 800px;
+    width: 100%;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border: 1px solid var(--cor-borda);
+}
+
+/* Header */
+.header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--cor-borda);
+}
+
+.header h1 {
+    font-size: 36px;
+    color: var(--cor-secundaria);
+    margin-bottom: 10px;
+}
+
+.header h2 {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--cor-primaria);
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.header p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--cor-texto);
+}
+
+/* Seções */
+.section {
+    margin-top: 25px;
+}
+
+.section h3 {
+    font-size: 20px;
+    color: var(--cor-secundaria);
+    margin-bottom: 15px;
+    position: relative;
+}
+
+/* Linha decorativa moderna */
+.section h3::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: var(--cor-primaria);
+    margin-top: 6px;
+    border-radius: 2px;
+}
+
+/* Lista de habilidades */
+.skills {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skills li {
+    background: #eff6ff;
+    color: var(--cor-primaria);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    border: 1px solid #dbeafe;
+    transition: 0.2s;
+}
+
+/* Efeito hover moderno */
+.skills li:hover {
+    background: var(--cor-primaria);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    .curriculo {
+        padding: 25px;
+    }
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .header h2 {
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de tarefas</title>
+</head>
+<body>
+
+    <label for="Digite a Tarefa"></label>
+    <input type="text" id="Tarefa" name="Tarefa" placeholder="Tarefa">
+    <button onclick="Adicionar()">Adicionar</button>
+    <br>
+
+    <h3>Lista de tarefa</h3>
+    <table id="TabelaHistorico">
+    <thead>
+        <tr>
+            <th>Tarefa</th>
+        </tr>
+    </thead>
+    <tbody id="Listadetarefa"></tbody>
+    </table>
+
+</body>
+<script src="trello.js"></script>
+</html>

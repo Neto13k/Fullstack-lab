@@ -1,0 +1,61 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "World News API",
+    "description": "API para gerenciamento de notícias mundiais e favoritos",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/noticias": {
+      "get": {
+        "summary": "Busca notícias na News API",
+        "parameters": [
+          { "name": "assunto", "in": "query", "schema": { "type": "string" } }
+        ],
+        "responses": { "200": { "description": "Lista de notícias" } }
+      }
+    },
+    "/noticias/Favoritos": {
+      "get": {
+        "summary": "Lista notícias favoritas",
+        "responses": { "200": { "description": "Lista de favoritos" } }
+      },
+      "post": {
+        "summary": "Salva uma notícia nos favoritos",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": { "type": "string" },
+                  "url": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "201": { "description": "Criado" } }
+      }
+    },
+    "/noticias/Favoritos/{id}": {
+      "put": {
+        "summary": "Edita um favorito",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "content": { "application/json": { "schema": { "type": "object" } } }
+        },
+        "responses": { "200": { "description": "Atualizado" } }
+      },
+      "delete": {
+        "summary": "Remove um favorito da sua lista",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": { "200": { "description": "Removido" } }
+      }
+    }
+  }
+}

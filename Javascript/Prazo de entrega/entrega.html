@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Prazo de Entrega</title>
+</head>
+<body>
+    <h1>Rastreamento</h1>
+    <p>Para calcular o prazo de entrega, por favor, insira os detalhes necessários.</p>
+    <label for="data da compra"></label>
+    <input type="date" id="dataCompra" name="dataCompra">
+
+    <label for="prazo de entrega"></label>
+    <input type="number" id="prazoEntrega" name="prazoEntrega" placeholder="Prazo de entrega em dias">
+
+    <button onclick="calcularPrazoEntrega()">Calcular Prazo de Entrega</button>
+    <p id="resultado"></p>
+
+    <script src="entrega.js"></script>
+    
+</body>
+</html>

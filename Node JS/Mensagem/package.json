@@ -1,0 +1,12 @@
+{
+  "name": "mensagem",
+  "version": "1.0.0",
+  "description": "Primeira mensagem em nodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "Mensagem.txt": "node Mensagem.js"
+  },
+  "author": "José Hermes",
+  "license": "ISC"
+}
