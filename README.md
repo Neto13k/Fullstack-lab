@@ -31,4 +31,4 @@ Este repositório é utilizado como ambiente de aprendizado contínuo e está em
 
 ## 📈 Status
 
-Em desenvolvimento contínuo. s
+Em desenvolvimento contínuo.
