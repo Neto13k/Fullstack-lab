@@ -1,26 +1,25 @@
 const axios = require('axios');
 const express = require('express');
-const fs = require('fs')
+const fs = require('fs');
 const path = require('path');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./Swagger.json');
 
 require('dotenv').config();
-const API_KEY = process.env.API_KEY;
-const PORT = process.env.PORT || 8080;
-
+const apiKey = process.env.API_KEY;
+const port = process.env.PORT || 8080;
 
 const server = express();
 server.use(express.json());
-const BASE_URL = "https://newsapi.org/v2/"
-const FAVORITOSFILE = path.join(__dirname, 'favoritos.json');
+const baseUrl = "https://newsapi.org/v2/";
+const favoritosFile = path.join(__dirname, 'favoritos.json');
 server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 ///////Criação do get geral
 server.get('/noticias', async (req, res) => {
     try {
         const assunto = req.query.assunto || 'geral';
-        const resposta = await axios.get(`${BASE_URL}everything?q=${assunto}&language=pt&apiKey=${API_KEY}`);
+        const resposta = await axios.get(`${baseUrl}everything?q=${assunto}&language=pt&apiKey=${apiKey}`);
         return res.send(resposta.data);
     } catch (error) {
         return res.status(500).json({ mensagem: "Erro ao buscar notícias" });
@@ -30,55 +29,53 @@ server.get('/noticias', async (req, res) => {
 ///////Criação do get noticias favoritas
 
 function getFavoritos() {
-    const data = fs.readFileSync(FAVORITOSFILE, 'utf-8')
-    return JSON.parse(data)
+    const data = fs.readFileSync(favoritosFile, 'utf-8');
+    return JSON.parse(data);
 }
 
-function saveFavoritos(Favoritos) {
-    fs.writeFileSync(FAVORITOSFILE, JSON.stringify(Favoritos, null, 2), 'utf-8');
+function saveFavoritos(favoritos) {
+    fs.writeFileSync(favoritosFile, JSON.stringify(favoritos, null, 2), 'utf-8');
 }
 
-server.get('/noticias/Favoritos', (req, res) => {
-    const Favoritos = getFavoritos();
-    res.json(Favoritos);
-})
-
-server.post('/noticias/Favoritos', (req, res) => {
-    const Novanoticia = req.body;
-    const Favoritos = getFavoritos();
-    Novanoticia.id = Date.now(); // geração de ID único
-    Favoritos.push(Novanoticia);
-    saveFavoritos(Favoritos);
-    res.status(201).json(Novanoticia);
+server.get('/noticias/favoritos', (req, res) => {
+    const favoritos = getFavoritos();
+    res.json(favoritos);
 });
 
-server.put('/noticias/Favoritos/:id', (req, res) => {
+server.post('/noticias/favoritos', (req, res) => {
+    const novaNoticia = req.body;
+    const favoritos = getFavoritos();
+    novaNoticia.id = Date.now(); // geração de ID único
+    favoritos.push(novaNoticia);
+    saveFavoritos(favoritos);
+    res.status(201).json(novaNoticia);
+});
+
+server.put('/noticias/favoritos/:id', (req, res) => {
     const { id } = req.params;
-    const Favoritos = getFavoritos();
-    const index = Favoritos.findIndex(f => f.id == id);
+    const favoritos = getFavoritos();
+    const index = favoritos.findIndex(f => f.id == id);
     if (index !== -1) {
-        Favoritos[index] = { ...Favoritos[index], ...req.body };
-        saveFavoritos(Favoritos);
-        return res.json(Favoritos[index]);
+        favoritos[index] = { ...favoritos[index], ...req.body };
+        saveFavoritos(favoritos);
+        return res.json(favoritos[index]);
     }
     res.status(404).send("Notícia não encontrada.");
 });
 
-server.delete('/noticias/Favoritos/:id', (req, res) => {
+server.delete('/noticias/favoritos/:id', (req, res) => {
     const { id } = req.params;
-    const Favoritos = getFavoritos();
-    const index = Favoritos.findIndex(f => f.id == id);
-    const NovosFavoritos = Favoritos.filter(f => f.id != id);
+    const favoritos = getFavoritos();
+    const novosFavoritos = favoritos.filter(f => f.id != id);
 
-    if (NovosFavoritos.length < Favoritos.length) {
-        saveFavoritos(NovosFavoritos);
+    if (novosFavoritos.length < favoritos.length) {
+        saveFavoritos(novosFavoritos);
         res.json({ message: 'Noticia excluída com sucesso!' });
     } else {
         res.status(404).json({ message: 'Noticia não encontrada.' });
     }
 });
 
-server.listen(8080, (req, res) => {
-    console.log("Servidor iniciado com sucesso.")
-
+server.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
 });

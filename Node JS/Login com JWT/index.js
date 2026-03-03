@@ -1,14 +1,14 @@
 const express = require('express');
-const pool = require ('./database.js')
+const pool = require('./database.js')
 const path = require('path');
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 
 const app = express();
 app.use(express.json())
-const SECRET_KEY = "Senha"
+const secretKey = "Senha"
 
-function authMiddleware (req, res, next){
+function authMiddleware(req, res, next){
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1];
 
@@ -16,7 +16,7 @@ function authMiddleware (req, res, next){
         return res.status(401).json({message: 'Token não fornecido!'})
     }
 
-    jwt.verify(token, SECRET_KEY, (err, user)=>{
+    jwt.verify(token, secretKey, (err, user)=>{
         if (err){
             return res.status(403).json({message: 'Token Inválido'});
         }
@@ -26,12 +26,17 @@ function authMiddleware (req, res, next){
 }
 
 app.post('/register', async (req,res) =>{
+    try{
     const {nome, email, senha} = req.body;
-    const hashedsenha = await bcrypt.hash(senha, 10);
+    const hashedSenha = await bcrypt.hash(senha, 10);
     const query ='INSERT INTO usuarios (nome, email, senha) VALUES($1, $2, $3) RETURNING *';
-    const values = [nome, email, hashedsenha];
+    const values = [nome, email, hashedSenha];
     const result = await pool.query(query, values);
     res.status(201).json({message: 'Aluno cadastrado com sucesso!'});
+    } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Erro interno do servidor" });
+  }
 });
 
 
@@ -49,7 +54,7 @@ app.post('/login', async (req, res) => {
         const senhaValida = await bcrypt.compare(senha, usuario.senha);
 
         if (senhaValida) {
-            const token = jwt.sign({ id: usuario.id, email: usuario.email }, SECRET_KEY, { expiresIn: '1h' });
+            const token = jwt.sign({ id: usuario.id, email: usuario.email }, secretKey, { expiresIn: '1h' });
             return res.json({ message: 'Login realizado com sucesso!', token });
         } else {
             return res.status(401).json({ message: 'Usuário ou senha inválidos' });

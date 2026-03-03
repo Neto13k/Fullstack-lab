@@ -1,14 +1,42 @@
-O projeto busca notícias da News API (https://newsapi.org/) e permite salvar, editar e excluir seus favoritos em um arquivo local.
+# API de Notícias Favoritas
 
-Realizado primeiro a criação do GET geral, onde irá buscar todas as notícias de forma dinâmica.
+API em Node.js que consome a News API e permite salvar, listar, editar e excluir notícias favoritas em um arquivo JSON.
 
-Após isso, realizada a criação do GET Favoritos, que lê e exibe as notícias armazenadas no arquivo favoritos.json.
+## Endpoints
 
-Foi criado o POST Favoritos, responsável por receber uma notícia e salvá-la no arquivo, gerando automaticamente um ID único para cada item.
+**GET /noticias**
+Busca notícias por assunto:
+`/noticias?assunto=tecnologia`
 
-Implementado o PUT Favoritos, que permite editar as informações de uma notícia já salva, localizando-a pelo seu ID.
+**GET /noticias/favoritos**
+Lista favoritos.
 
-Por fim, criado o DELETE Favoritos, que remove uma notícia específica da lista de favoritos baseando-se no ID informado.
+**POST /noticias/favoritos**
+Adiciona um favorito:
 
+```json
+{
+  "title": "Título da notícia",
+  "url": "https://link.com"
+}
+```
 
-As configurações de API_KEY e PORT ficam armazenadas em um arquivo local .env, que é ignorado pelo Git através do arquivo .gitignore.
+**PUT /noticias/favoritos/:id**
+Atualiza um favorito.
+
+**DELETE /noticias/favoritos/:id**
+Remove um favorito.
+
+## .env
+
+```env
+API_KEY=sua_chave
+PORT=8080
+```
+
+## Executar
+
+```bash
+npm install
+node index.js
+```
